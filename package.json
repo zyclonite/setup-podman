@@ -16,7 +16,9 @@
   "keywords": [
     "GitHub",
     "Actions",
-    "JavaScript"
+    "Podman",
+    "Buildah",
+    "zyclonite"
   ],
   "author": "",
   "license": "MIT",
