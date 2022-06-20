@@ -1,21 +1,30 @@
 const core = require('@actions/core');
+//const {exec} = require('@actions/exec');
 const wait = require('./wait');
 
+main().catch(err => {
+  core.setFailed(err.message)
+})
 
-// most @actions toolkit packages have async methods
-async function run() {
-  try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+async function main() {
+  checkPlatform()
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
+  const ms = core.getInput('milliseconds');
+  core.info(`Waiting ${ms} milliseconds ...`);
 
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
-  }
+  core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+  await wait(parseInt(ms));
+  core.info((new Date()).toTimeString());
+
+  core.setOutput('time', new Date().toTimeString());
+
+  //await exec(path.join(__dirname, 'shell-script'), [arg1, arg2])
+  //process.env.RUNNER_TEMP
 }
 
-run();
+function checkPlatform() {
+  if (process.platform !== 'linux')
+    throw new Error(
+      '@zyclonite/setup-podman only supports Ubuntu Linux at this time'
+    )
+}
