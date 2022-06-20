@@ -7,7 +7,6 @@ on:
       - 'releases/*'
 
 jobs:
-  # unit tests
   units:
     runs-on: ubuntu-22.04
     steps:
@@ -15,7 +14,6 @@ jobs:
     - run: npm ci
     - run: npm test
 
-  # test action works running from the graph
   test:
     runs-on: ubuntu-22.04
     steps:
