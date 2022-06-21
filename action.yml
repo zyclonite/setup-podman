@@ -1,13 +1,25 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Setup Podman'
+description: 'Setup podman and buildah binaries'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
-    required: true
-    default: '1000'
+  podman:
+    description: 'podman version'
+    required: false
+    default: '4.1.1'
+  buildah:
+    description: 'buildah version'
+    required: false
+    default: '1.26.1'
+  arch:
+    description: 'architecture'
+    required: false
+    default: 'amd64'
 outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  podman:
+    description: 'podman version'
+  buildah:
+    description: 'buildah version'
+  arch:
+    description: 'architecture'
 runs:
   using: 'node16'
   main: 'dist/index.js'

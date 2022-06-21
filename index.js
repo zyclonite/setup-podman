@@ -1,6 +1,5 @@
 const core = require('@actions/core');
-//const {exec} = require('@actions/exec');
-const wait = require('./wait');
+const io = require('@actions/io');
 
 main().catch(err => {
   core.setFailed(err.message)
@@ -9,17 +8,24 @@ main().catch(err => {
 async function main() {
   checkPlatform()
 
-  const ms = core.getInput('milliseconds');
-  core.info(`Waiting ${ms} milliseconds ...`);
+  let arch = core.getInput('arch')
+  arch = arch == null ? 'amd64' : arch
+  core.info(`Architecture set to ${arch}`);
+  core.setOutput('arch', arch);
 
-  core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-  await wait(parseInt(ms));
-  core.info((new Date()).toTimeString());
+  let podman = core.getInput('podman')
+  podman = podman == null ? '4.1.1' : podman
+  core.info(`Podman version set to ${podman}`);
+  core.setOutput('podman', podman);
 
-  core.setOutput('time', new Date().toTimeString());
+  let buildah = core.getInput('buildah')
+  buildah = buildah == null ? '1.26.1' : buildah
+  core.info(`Buildah version set to ${buildah}`);
+  core.setOutput('buildah', buildah);
 
-  //await exec(path.join(__dirname, 'shell-script'), [arg1, arg2])
-  //process.env.RUNNER_TEMP
+  const options = {recursive: false, force: true};
+  await io.cp(path.join(__dirname, '../bin/podman', podman, arch), "/usr/local/bin", options)
+  await io.cp(path.join(__dirname, '../bin/buildah', buildah, arch), "/usr/local/bin", options)
 }
 
 function checkPlatform() {
