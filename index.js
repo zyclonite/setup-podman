@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const io = require('@actions/io');
+const path = require('path');
 
 main().catch(err => {
   core.setFailed(err.message);
