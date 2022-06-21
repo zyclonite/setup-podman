@@ -28,7 +28,8 @@
   "homepage": "https://github.com/zyclonite/setup-podman#readme",
   "dependencies": {
     "@actions/core": "^1.9.0",
-    "@actions/io": "^1.1.2"
+    "@actions/io": "^1.1.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.34.0",
