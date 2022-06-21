@@ -25,8 +25,8 @@ async function main() {
   core.setOutput('buildah', buildah);
 
   const options = {recursive: false, force: true};
-  await io.cp(path.join(__dirname, '../bin/podman', podman, arch), "/usr/local/bin", options);
-  await io.cp(path.join(__dirname, '../bin/buildah', buildah, arch), "/usr/local/bin", options);
+  await io.cp(path.join(__dirname, '../bin/podman', podman, arch, "podman"), "/usr/local/bin", options);
+  await io.cp(path.join(__dirname, '../bin/buildah', buildah, arch, "buildah"), "/usr/local/bin", options);
 }
 
 function checkPlatform() {
