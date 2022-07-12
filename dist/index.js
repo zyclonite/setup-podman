@@ -2702,7 +2702,7 @@ async function main() {
   core.setOutput('podman', podman);
 
   let buildah = core.getInput('buildah');
-  buildah = buildah == null ? '1.26.1' : buildah;
+  buildah = buildah == null ? '1.26.2' : buildah;
   core.info(`Buildah version set to ${buildah}`);
   core.setOutput('buildah', buildah);
 

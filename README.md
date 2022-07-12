@@ -14,7 +14,7 @@ You can now consume the action by referencing the v1 branch
 uses: zyclonite/setup-podman@v1
 with:
   podman: 4.1.1
-  buildah: 1.26.1
+  buildah: 1.26.2
   arch: amd64
 ```
 

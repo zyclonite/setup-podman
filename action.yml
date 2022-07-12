@@ -8,7 +8,7 @@ inputs:
   buildah:
     description: 'buildah version'
     required: false
-    default: '1.26.1'
+    default: '1.26.2'
   arch:
     description: 'architecture'
     required: false
