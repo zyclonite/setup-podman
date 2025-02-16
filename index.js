@@ -15,12 +15,12 @@ async function main() {
   core.setOutput('arch', arch);
 
   let podman = core.getInput('podman');
-  podman = podman == null ? '4.1.1' : podman;
+  podman = podman == null ? '5.4.0' : podman;
   core.info(`Podman version set to ${podman}`);
   core.setOutput('podman', podman);
 
   let buildah = core.getInput('buildah');
-  buildah = buildah == null ? '1.26.2' : buildah;
+  buildah = buildah == null ? '1.30.0' : buildah;
   core.info(`Buildah version set to ${buildah}`);
   core.setOutput('buildah', buildah);
 

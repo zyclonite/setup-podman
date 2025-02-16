@@ -4,11 +4,11 @@ inputs:
   podman:
     description: 'podman version'
     required: false
-    default: '4.1.1'
+    default: '5.4.0'
   buildah:
     description: 'buildah version'
     required: false
-    default: '1.26.2'
+    default: '1.30.0'
   arch:
     description: 'architecture'
     required: false
